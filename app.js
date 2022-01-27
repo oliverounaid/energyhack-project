@@ -38,46 +38,70 @@ fetch(`https://dashboard.elering.ee/api/nps/price?start=${start}&end=${end}`)
           });
         });
     }
-  });
+
+    console.log(dateHour);
+    console.log(prices);
+
+    // Chart.js
+    const labels = dateHour;
+
+    // teeb tühja array
+    const barColors = []
+    // for tsykkel, mis loeb 0-23ni
+    for (let i = 0; i < 24; i++) {
+      // paneb 24 korda sinna see punane v2rv
+      barColors.push('rgb(255, 99, 132)')
+    }
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Elektri hind [EUR/kWh]',
+        backgroundColor: barColors,
+        borderColor: 'rgb(255, 99, 132)',
+        // paneb hinnad y teljele
+        data: prices,
+      }]
+    };
+
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        scales: {
+          x: {
+            title: {
+              //color: 'red',
+              display: true,
+              text: 'Tunnid'
+            }
+          },
+          y: {
+            min: 0,
+            title: {
+              //color: 'red',
+              display: true,
+              text: 'Eurod'
+            }
+          }
+        }
+      }
+    };
+
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
 
 
-console.log(dateHour);
-console.log(prices);
-// Chart.js
-const labels = dateHour;
-const data = {
-  labels: labels,
-  datasets: [{
-    label: '',
-    data: prices,
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.1)'
-     
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(201, 203, 207)'
-    ],
-    borderWidth: 1
-  }]
-};
-const config = {
-  type: 'bar',
-  data: data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
+    var dataset = myChart.data.datasets[0];
+    for (var i = 0; i < dataset.data.length; i++) {
+      // see for loop k2ib kogu data l2bi ja vaatab, et mis hind on
+      // kui on alla 10.0, siis teeb roheliseks
+      if (dataset.data[i] < 10.0) {
+        dataset.backgroundColor[i] = 'rgb(0, 255, 132)';
       }
     }
-  },
-};
-const myChart = new Chart(
-  document.getElementById('myChart'),
-  config
-);
+
+    myChart.update();
+  });
