@@ -3,3 +3,13 @@ body {
   box-sizing: border-box;
   padding: 0;
 }
+.chartDiv{
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  display: flex;
+}
+#myChart {
+  max-width: 800px;
+  max-height: 400px;
+}

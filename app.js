@@ -4,20 +4,22 @@ const m = today.getMonth();
 const start = new Date().toISOString();
 const end = new Date(Date.now() + (3600 * 1000 * 24)).toISOString();
 let count = 0;
+let dateHour = [];
 let prices = [];
-let timeHours = [];
 // const end = new Date(y, m + 1, 1).toISOString();
 fetch(`https://dashboard.elering.ee/api/nps/price?start=${start}&end=${end}`)
   .then(response => response.json())
   .then(res => {
     res.data.ee.forEach(el => {
       const date = new Date(el.timestamp * 1000);
-      const options = { year: 'numeric', month: 'long', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      const options = { hour: '2-digit' };
       const localDate = date.toLocaleString('et-EE', options);
       const secondData = [localDate, (el.price / 10).toFixed(2)];
       //console.log(secondData);
+      dateHour.push(localDate);
       count++;
-      prices.push(secondData)
+      //dateHour.push();
+      prices.push((el.price / 10));
     });
     //console.log(count);
     if (prices.length < 24) {
@@ -26,16 +28,51 @@ fetch(`https://dashboard.elering.ee/api/nps/price?start=${start}&end=${end}`)
       fetch(`https://dashboard.elering.ee/api/nps/price?start=${start2}&end=${end2}`)
         .then(response => response.json())
         .then(res => {
-          res.data.ee.forEach(el => {
+          res.data.ee.reverse().forEach(el => {
             const date = new Date(el.timestamp * 1000);
-            const options = { year: 'numeric', month: 'long', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const options = { hour: '2-digit' };
             const localDate = date.toLocaleString('et-EE', options);
             const firstData = [localDate, (el.price / 10).toFixed(2)];
-            //console.log(firstData);
-            prices.unshift(firstData)
+            dateHour.unshift(localDate);
+            prices.unshift((el.price / 10));
           });
         });
     }
-
   });
+
+
+console.log(dateHour);
 console.log(prices);
+// Chart.js
+const labels = dateHour;
+const data = {
+  labels: labels,
+  datasets: [{
+    label: '',
+    data: prices,
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.1)'
+     
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+    ],
+    borderWidth: 1
+  }]
+};
+const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+
+const myChart = new Chart(
+  document.getElementById('myChart'),
+  config
+);
