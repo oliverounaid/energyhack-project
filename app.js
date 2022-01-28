@@ -35,6 +35,7 @@ fetch(`https://dashboard.elering.ee/api/nps/price?start=${start}&end=${end}`)
             const firstData = [localDate, (el.price / 10).toFixed(2)];
             dateHour.unshift(localDate);
             prices.unshift((el.price / 10));
+            //chartjs
           });
         });
     }
@@ -52,7 +53,7 @@ const data = {
     data: prices,
     backgroundColor: [
       'rgba(255, 99, 132, 0.1)'
-     
+
     ],
     borderColor: [
       'rgb(255, 99, 132)',

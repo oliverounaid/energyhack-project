@@ -48,8 +48,13 @@ header h1 {
 
 .email-form {
   padding-top: 40px;
+  display: flex;
+  flex-direction: column;
 }
-
+.email-form > span {
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
 
 .form-container {
   display: flex;
