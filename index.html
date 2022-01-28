@@ -6,11 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Energyhack Project</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="chartDiv">
-    <canvas id="myChart"></canvas>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header><h1>Elektrihind Eestis</h1></header>
+
+  <div class="main-container">
+    <div class="chartDiv">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  <div class="email-form">
+    <form class="form-container" action="">
+  
+      <input type="email" id="fname" name="email" placeholder="Märguande saamiseks sisesta e-mail">
+    
+      <input type="submit" value="Submit">
+    </form>
   </div>
   <script src="app.js"></script>
 </body>
