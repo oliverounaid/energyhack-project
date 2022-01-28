@@ -50,7 +50,7 @@ API - Elering dashboard API - https://dashboard.elering.ee/
 
 ![energy_hack_team2.jpg](https://github.com/oliverounaid/energyhack-project/blob/main/Images/energy_hack_team2.jpg)
 
-
+repo link https://github.com/oliverounaid/energyhack-project
 
 ## Kasutatud tarkvara:
 * **Teams , Slack** Suhtluskanalid 
