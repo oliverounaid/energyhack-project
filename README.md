@@ -22,16 +22,13 @@ Suhtluskanalid:
 - Lähteülesande selgitamine
 - Omavahel ülesannete jagamine
 
-
-## Lahenduskäik
-
 API - Elering dashboard API - https://dashboard.elering.ee/
-1. 24h hindade array
-2. chartJS graafik
-3. teavitussüsteem
+
 
 
 **2.päev**
+- Töö hetkeseisu ülevaatamine
+- 10.30-11.20 Teamsis kohtumine Eleringi esindajatega
 - Koodi kirjutamine 
 
 
@@ -60,7 +57,7 @@ API - Elering dashboard API - https://dashboard.elering.ee/
 * **Github** (projekti haldamine)
 * **Visual Studio Code** (programmeerimine)
 * **Kasutatud keeled** HTML + CSS + JS(+Chart.js)
-* **Figma** (disain)
+
 
 ## Küsimused tiimiliikmetele: 
 1. Kas oleksid tahtnud täita mingit muud ülesannet selles meeskonnas?
